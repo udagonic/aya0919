@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exclusive Dinner Selection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+JP:wght@300;500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0d0a0c;
+      --card-bg: rgba(22, 16, 20, 0.88);
+      --gold-gradient: linear-gradient(135deg, #f7d88c 0%, #e5b95a 30%, #c9933b 70%, #f3d790 100%);
+      --gold-solid: #e0b45a;
+      --pink-neon: #ff6b9d;
+      --pink-gradient: linear-gradient(135deg, #ff75a0 0%, #f04276 50%, #b81b4c 100%);
+      --pink-subtle: #fce4ec;
+      --text-main: #f8f6f7;
+      --text-muted: #bda8b3;
+      --border-lux: linear-gradient(135deg, rgba(247, 216, 140, 0.6), rgba(255, 107, 157, 0.3), rgba(201, 147, 59, 0.5));
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', 'Noto Serif JP', serif;
+      background: radial-gradient(circle at 50% 0%, #26151e 0%, #120c10 50%, #070506 100%);
+      background-attachment: fixed;
+      color: var(--text-main);
+      line-height: 1.8;
+      padding: 36px 18px 60px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 34px;
+      position: relative;
+    }
+
+    .en-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(255, 117, 160, 0.4);
+      margin-bottom: 14px;
+    }
+
+    .lux-divider {
+      width: 70px;
+      height: 1.5px;
+      background: var(--gold-gradient);
+      margin: 0 auto 18px;
+      position: relative;
+    }
+
+    .lux-divider::before {
+      content: '◆';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 7px;
+      color: var(--gold-solid);
+      background: var(--bg-dark);
+      padding: 0 6px;
+    }
+
+    .intro-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 24px 20px;
+      margin-bottom: 26px;
+      position: relative;
+      border: 1px solid rgba(229, 185, 90, 0.3);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 107, 157, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .badge-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      padding: 3px 12px;
+      border-radius: 30px;
+      background: rgba(255, 107, 157, 0.15);
+      border: 1px solid rgba(255, 107, 157, 0.45);
+      color: #ff9bbb;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .shop-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.28rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 14px;
+      line-height: 1.45;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .point-box {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 107, 157, 0.04) 100%);
+      border-left: 2.5px solid;
+      border-image: var(--gold-gradient) 1;
+      padding: 12px 14px;
+      font-size: 0.84rem;
+      color: #ddd4d8;
+      line-height: 1.75;
+      margin-bottom: 16px;
+      text-align: justify;
+      font-weight: 300;
+    }
+
+    .location {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.76rem;
+      color: #a8949d;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .loc-icon {
+      color: var(--gold-solid);
+      font-size: 0.85rem;
+      margin-top: 1px;
+    }
+
+    .btn-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 12px 10px;
+      border-radius: 100px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .btn-gold {
+      background: transparent;
+      color: #f7d88c;
+      border: 1px solid rgba(247, 216, 140, 0.6);
+      box-shadow: 0 0 10px rgba(247, 216, 140, 0.15) inset;
+    }
+
+    .btn-gold:active {
+      background: rgba(247, 216, 140, 0.15);
+      transform: scale(0.97);
+    }
+
+    .btn-pink {
+      background: var(--pink-gradient);
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 4px 18px rgba(240, 66, 118, 0.4);
+    }
+
+    .btn-pink:active {
+      filter: brightness(1.15);
+      transform: scale(0.97);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 36px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      color: #8a707a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="en-title">Private Selection</span>
+      <h1>Dinner Plan</h1>
+      <div class="lux-divider"></div>
+      <p class="intro-text">
+        お寿司と牛タンが楽しめるお店と居酒屋さんをセレクトしました✨<br>
+        気になるお店があれば教えてね！
+      </p>
+    </header>
+
+    <!-- 鮨ト酒 日々晴々 -->
+    <article class="card">
+      <div class="badge-wrap">
+        <span class="badge">Modern Sushi Bar</span>
+      </div>
+      <h2 class="shop-name">鮨ト酒 日々晴々 ルクア大阪店</h2>
+      <div class="point-box">
+        ルクア大阪の地下2階（バルチカ）にある、大人のための進化系寿司酒場です。洗練されたモダンな空間で、本格的なお寿司をつまみながらカジュアルにお酒を楽しめるため、初対面でも緊張せず打ち解けやすい雰囲気です。
+      </div>
+      <div class="location">
+        <span class="loc-icon">📍</span>
+        <span>〒530-8558 大阪府大阪市北区梅田3-1−3 ルクア大阪B2F</span>
+      </div>
+      <div class="btn-container">
+        <a href="https://www.dynacjapan.com/brands/hibiharebare/shops/lucua-osaka/?utm_source=google&utm_medium=map&utm_campaign=top" target="_blank" rel="noopener" class="btn btn-gold">Web Site</a>
+        <a href="https://www.instagram.com/hibi_harebare_osaka/?hl=ja" target="_blank" rel="noopener" class="btn btn-pink">Instagram</a>
+      </div>
+    </article>
+
+    <!-- 炭焼牛たん東山 -->
+    <article class="card">
+      <div class="badge-wrap">
+        <span class="badge">Sendai Beef Tongue</span>
+      </div>
+      <h2 class="shop-name">炭焼牛たん東山 ルクア大阪店</h2>
+      <div class="point-box">
+        職人が炭火で香ばしく焼き上げる名物の厚切り牛たんや、じっくり煮込んだ柔らかい「ゆで牛たん」が絶品。定食スタイルだけでなく、牛たん刺しやユッケなどお酒に合う単品メニューも豊富。
+      </div>
+      <div class="location">
+        <span class="loc-icon">📍</span>
+        <span>〒530-8558 大阪府大阪市北区梅田3丁目1−3 ルクアイーレ 10F</span>
+      </div>
+      <div class="btn-container">
+        <a href="https://www.4129.co.jp/gyutan-higashiyama/shop/rukuaosaka.html" target="_blank" rel="noopener" class="btn btn-gold">Web Site</a>
+        <a href="https://www.instagram.com/osakagyutan4129/?hl=ja" target="_blank" rel="noopener" class="btn btn-pink">Instagram</a>
+      </div>
+    </article>
+
+    <!-- 豆ふと鮨と和食 ひとひ -->
+    <article class="card">
+      <div class="badge-wrap">
+        <span class="badge">Japanese Dining & Night View</span>
+      </div>
+      <h2 class="shop-name">豆ふと鮨と和食 ひとひ</h2>
+      <div class="point-box">
+        阪急グランドビル28階にある、全席が窓側の夜景に向かって配置された和食ダイニングです。黒毛和牛や旬の海鮮など、お酒が進む丁寧な創作和食コース・アラカルト。
+      </div>
+      <div class="location">
+        <span class="loc-icon">📍</span>
+        <span>大阪府大阪市北区角田町8-47 阪急グランドビル32番街 30F</span>
+      </div>
+      <div class="btn-container">
+        <a href="https://www.opefac.com/restaurant/hitohi/" target="_blank" rel="noopener" class="btn btn-gold">Web Site</a>
+        <a href="https://www.instagram.com/umeda.hitohi/?hl=ja" target="_blank" rel="noopener" class="btn btn-pink">Instagram</a>
+      </div>
+    </article>
+
+    <!-- 徳田酒店 -->
+    <article class="card">
+      <div class="badge-wrap">
+        <span class="badge">Authentic Sakaba</span>
+      </div>
+      <h2 class="shop-name">徳田酒店</h2>
+      <div class="point-box">
+        創業明治23年京橋発祥の酒屋「徳田商店」が昭和の角打ちだった時代をイメージし今に甦らせた懐かしくも温かい雰囲気。豊富な日本酒、健康的な手作りのおばんざいが人気の大衆飲み処です。
+      </div>
+      <div class="location">
+        <span class="loc-icon">📍</span>
+        <span>大阪府大阪市北区梅田3-1-3 ルクア大阪</span>
+      </div>
+      <div class="btn-container">
+        <a href="https://retty.me/area/PRE27/ARE89/SUB8901/100001397486/menu/#dishes" target="_blank" rel="noopener" class="btn btn-gold">Retty</a>
+        <a href="https://www.instagram.com/tokuda_saketen/?hl=ja" target="_blank" rel="noopener" class="btn btn-pink">Instagram</a>
+      </div>
+    </article>
+
+    <footer>
+      <p>Special Time for Us</p>
+    </footer>
+  </div>
+</body>
+</html>
